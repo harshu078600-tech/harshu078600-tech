@@ -23,16 +23,6 @@ they understand space, depth, and structure.
 -  **Backend** — FastAPI, Python, PostgreSQL, Redis
 ---
 
-## The Way I Think
-
-I don't follow the standard path.
-I pick a destination and figure out the road as I go.
-That's true for code, for learning, and for life.
-
-I believe the best engineers aren't the ones who know the most —
-they're the ones who can figure out anything.
-
----
 
 ## Fun Facts
 -  I love to wander — new places, new perspectives, always moving
