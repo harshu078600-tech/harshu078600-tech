@@ -143,19 +143,7 @@ Right now I'm going deep into **3D Vision & Generative AI** — where machines d
 
 <!-- ══════════════════════  3D SKYLINE  ══════════════════════════════ -->
 
-## 🏙️ 3D Contribution Skyline
 
-<div align="center">
-  <img
-    src="https://raw.githubusercontent.com/harshu078600-tech/harshu078600-tech/main/profile-3d-contrib/profile-night-rainbow.svg"
-    width="100%"
-    alt="3D Contribution Graph"
-  />
-</div>
-
-<br/>
-
----
 
 ## 🏙️ 3D Contribution Skyline
 
@@ -166,6 +154,23 @@ Right now I'm going deep into **3D Vision & Generative AI** — where machines d
     alt="3D Contribution Graph"
   />
 </div>
+
+
+---
+
+## 📊 Metrics Dashboard
+
+<div align="center">
+  <img
+    src="https://raw.githubusercontent.com/harshu078600-tech/harshu078600-tech/main/github-metrics.svg"
+    width="100%"
+    alt="GitHub Metrics"
+  />
+</div>
+
+<br/>
+
+---
 <!-- ══════════════════════  WAKATIME STATS  ══════════════════════════ -->
 
 ## ⏱️ Weekly Coding Stats (WakaTime)
