@@ -70,27 +70,6 @@ Right now I'm going deep into **3D Vision & Generative AI** — where machines d
 ---
 
 
-## 🧠 NeuralGrid — 3D Contribution Neural Network
-
-[![NeuralGrid](https://raw.githubusercontent.com/harshu078600-tech/harshu078600-tech/main/profile-night-rainbow.svg)](https://harshu078600-tech.github.io/harshu078600-tech/neuralgrid.html)
-
-> Interactive Three.js contribution universe. Drag to rotate. Explore commit clusters, activity nodes, and neural pathways.
-
-<!-- ══════════════════════  TROPHIES  ════════════════════════════════ -->
-
-## 🏆 GitHub Trophies
-
-<div align="center">
-  <img
-    src="https://github-profile-trophy.vercel.app/?username=harshu078600-tech&theme=radical&no-frame=true&no-bg=true&margin-w=6&column=7"
-    width="100%"
-    alt="GitHub Trophies"
-  />
-</div>
-
-<br/>
-
----
 
 <!-- ══════════════════════  GITHUB STATS  ════════════════════════════ -->
 
