@@ -15,7 +15,7 @@ jobs:
       - uses: lowlighter/metrics@latest
         with:
           # ── Auth ─────────────────────────────────────────────────
-          token: ${{ secrets.METRICS_TOKEN }}
+          token: ${{ secrets.MY_METRICS_TOKEN }}
           user: harshu078600-tech
 
           # ── Base ─────────────────────────────────────────────────
