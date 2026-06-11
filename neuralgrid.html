@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>harshu078600-tech — NeuralGrid Contribution Map</title>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:#060610;color:#e2e8f0;font-family:system-ui,sans-serif;overflow-x:hidden}
+  canvas{display:block;width:100%;height:100vh}
+  #hud{position:absolute;top:24px;left:50%;transform:translateX(-50%);text-align:center;pointer-events:none}
+  #hud h1{font-size:15px;font-weight:500;letter-spacing:.12em;color:#a5b4fc;text-transform:uppercase;margin-bottom:4px}
+  #hud p{font-size:12px;color:#475569}
+  #stats{position:absolute;bottom:24px;left:50%;transform:translateX(-50%);display:flex;gap:32px;background:rgba(15,15,35,.7);border:1px solid #1e1b4b;border-radius:12px;padding:12px 28px;backdrop-filter:blur(8px)}
+  .stat{text-align:center}
+  .stat .val{font-size:22px;font-weight:600;color:#818cf8}
+  .stat .lbl{font-size:11px;color:#64748b;letter-spacing:.08em;text-transform:uppercase;margin-top:2px}
+  #drag-hint{position:absolute;bottom:90px;left:50%;transform:translateX(-50%);font-size:11px;color:#334155;letter-spacing:.06em}
+</style>
+</head>
+<body>
+<canvas id="c"></canvas>
+<div id="hud">
+  <h1>harshu078600-tech</h1>
+  <p>Neural contribution map · June 11, 2026</p>
+</div>
+<div id="stats">
+  <div class="stat"><div class="val" id="s-total">0</div><div class="lbl">Total commits</div></div>
+  <div class="stat"><div class="val" id="s-streak">0</div><div class="lbl">Best streak</div></div>
+  <div class="stat"><div class="val" id="s-active">0</div><div class="lbl">Active days</div></div>
+  <div class="stat"><div class="val" id="s-peak">0</div><div class="lbl">Peak day</div></div>
+</div>
+<div id="drag-hint">drag to rotate</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"><\/script>
+<script>
+const RAW=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,6,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,1,0,0,0,0,3,3,26];
+const total=RAW.reduce((a,b)=>a+b,0);
+const active=RAW.filter(v=>v>0).length;
+const peak=Math.max(...RAW);
+let best=0,cur=0;
+RAW.forEach(v=>{cur=v>0?cur+1:0;best=Math.max(best,cur);});
+document.getElementById('s-total').textContent=total.toLocaleString();
+document.getElementById('s-streak').textContent=best;
+document.getElementById('s-active').textContent=active;
+document.getElementById('s-peak').textContent=peak;
+
+const canvas=document.getElementById('c');
+const renderer=new THREE.WebGLRenderer({canvas,antialias:true});
+renderer.setPixelRatio(Math.min(devicePixelRatio,2));
+renderer.setSize(innerWidth,innerHeight);
+renderer.setClearColor(0x060610);
+window.addEventListener('resize',()=>{
+  camera.aspect=innerWidth/innerHeight;
+  camera.updateProjectionMatrix();
+  renderer.setSize(innerWidth,innerHeight);
+});
+
+const scene=new THREE.Scene();
+const camera=new THREE.PerspectiveCamera(55,innerWidth/innerHeight,.1,1000);
+camera.position.set(0,0,95);
+
+const COLORS=[0x1e1b4b,0x312e81,0x4338ca,0x4f46e5,0x6366f1,0x818cf8,0xa5b4fc,0xc7d2fe,0xe0e7ff];
+const nodeGroup=new THREE.Group();
+const edgeGroup=new THREE.Group();
+scene.add(edgeGroup);scene.add(nodeGroup);
+
+const nodes=[];
+const DAYS=7,WEEKS=Math.ceil(RAW.length/DAYS);
+
+RAW.forEach((v,i)=>{
+  const w=Math.floor(i/DAYS),d=i%DAYS;
+  const theta=(w/WEEKS)*Math.PI*2;
+  const phi=(d/DAYS)*Math.PI*1.5-Math.PI*0.75;
+  const rBase=30+Math.sin(theta*4+phi*3)*6+Math.cos(theta*2)*4;
+  const x=rBase*Math.cos(theta)*Math.cos(phi);
+  const y=rBase*Math.sin(phi)*1.6;
+  const z=rBase*Math.sin(theta)*Math.cos(phi);
+  const size=v===0?.18:.28+Math.min(v,10)*0.16;
+  const geo=new THREE.SphereGeometry(size,10,10);
+  const colIdx=v===0?0:Math.min(Math.ceil(v/1.5),8);
+  const mat=new THREE.MeshBasicMaterial({
+    color:COLORS[colIdx],
+    transparent:true,
+    opacity:v===0?.08:.55+Math.min(v,8)*.04
+  });
+  const mesh=new THREE.Mesh(geo,mat);
+  mesh.position.set(x,y,z);
+  mesh.userData={v,w,d,i};
+  nodeGroup.add(mesh);
+  nodes.push(mesh);
+});
+
+const lineMat=new THREE.LineBasicMaterial({color:0x3730a3,transparent:true,opacity:.07});
+for(let i=0;i<RAW.length;i++){
+  if(RAW[i]===0)continue;
+  const next=i+DAYS;
+  if(next<RAW.length&&RAW[next]>0){
+    const pts=[nodes[i].position.clone(),nodes[next].position.clone()];
+    edgeGroup.add(new THREE.Line(new THREE.BufferGeometry().setFromPoints(pts),lineMat));
+  }
+  if(RAW[i]>4){
+    for(let j=i+1;j<Math.min(i+DAYS*3,RAW.length);j++){
+      if(RAW[j]>4&&Math.random()<.04){
+        const pts=[nodes[i].position.clone(),nodes[j].position.clone()];
+        const m=new THREE.LineBasicMaterial({color:0x6366f1,transparent:true,opacity:.12});
+        edgeGroup.add(new THREE.Line(new THREE.BufferGeometry().setFromPoints(pts),m));
+      }
+    }
+  }
+}
+
+let t=0,dragX=0,dragY=0,isDrag=false,lx=0,ly=0;
+canvas.addEventListener('mousedown',e=>{isDrag=true;lx=e.clientX;ly=e.clientY;});
+canvas.addEventListener('touchstart',e=>{isDrag=true;lx=e.touches[0].clientX;ly=e.touches[0].clientY;},{passive:true});
+window.addEventListener('mouseup',()=>isDrag=false);
+window.addEventListener('touchend',()=>isDrag=false);
+window.addEventListener('mousemove',e=>{
+  if(!isDrag)return;
+  dragX+=(e.clientX-lx)*.004;dragY+=(e.clientY-ly)*.003;
+  dragY=Math.max(-.9,Math.min(.9,dragY));lx=e.clientX;ly=e.clientY;
+});
+window.addEventListener('touchmove',e=>{
+  if(!isDrag)return;
+  dragX+=(e.touches[0].clientX-lx)*.004;dragY+=(e.touches[0].clientY-ly)*.003;
+  dragY=Math.max(-.9,Math.min(.9,dragY));
+  lx=e.touches[0].clientX;ly=e.touches[0].clientY;
+},{passive:true});
+
+let frame=0;
+function animate(){
+  requestAnimationFrame(animate);
+  frame++;t+=.0025;
+  nodeGroup.rotation.y=t+dragX;nodeGroup.rotation.x=dragY*.4;
+  edgeGroup.rotation.y=t+dragX;edgeGroup.rotation.x=dragY*.4;
+  nodes.forEach((n,i)=>{
+    if(n.userData.v>0){
+      const pulse=Math.sin(t*1.8+i*.09)*.08;
+      n.material.opacity=Math.min(.98,.55+Math.min(n.userData.v,8)*.04+pulse);
+      if(n.userData.v>6){
+        const hue=((t*20+i*11)%360)/360;
+        n.material.color.setHSL(hue,.85,.62);
+      }
+    }
+  });
+  renderer.render(scene,camera);
+}
+animate();
+<\/script>
+</body>
+</html>
