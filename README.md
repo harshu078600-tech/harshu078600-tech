@@ -23,33 +23,27 @@
 
 ---
 
-<!-- ABOUT ME — TERMINAL STYLE -->
-## `$ whoami`
+## 👋 About Me
 
-```typescript
-const harsh: Developer = {
-  name        : "Harsh Kumar Swami",
-  location    : "India 🇮🇳  (UTC +5:30)",
-  focus       : "3D Vision · Generative AI · Full Stack Systems",
-  currentBuild: "Machines that see depth, structure & space from flat 2D images",
-  mindset     : "Happiest in front of 3 monitors solving problems most won't attempt",
-  contact     : "harshu078600@gmail.com",
+**Harsh Kumar Swami** — Full Stack Developer with AI Agents, based in India (UTC +5:30).
 
-  stack: {
-    frontend : ["Next.js", "TypeScript", "Tailwind CSS"],
-    backend  : ["FastAPI", "Python", "PostgreSQL", "Redis"],
-    ai       : ["LLM Agents", "RAG Pipelines", "MCP", "3D Vision"],
-    infra    : ["Supabase", "Docker", "GitHub Actions"],
-  },
+I build things with code and enjoy exploring new ideas and places along the way.  
+I'm happiest when immersed in deep work — especially in front of multiple monitors, solving challenges that most people wouldn't even attempt.
 
-  openTo: ["Remote · Middle East", "Remote · Europe", "Remote · US"],
-  funFacts: [
-    "Love to wander — new places, new perspectives, always moving",
-    "Fascinated by how machines understand 3D space from flat 2D images",
-    "Gym + deep work is the daily structure",
-  ],
-};
-```
+Right now I'm going deep into **3D Vision & Generative AI** — the kind of work where machines don't just see images, they understand space, depth, and structure.
+
+**What I work with:**
+- Frontend — Next.js, TypeScript, Tailwind CSS
+- AI Systems — LLM Agents, RAG Pipelines, MCP
+- Backend — FastAPI, Python, PostgreSQL, Redis
+
+**Fun facts:**
+- I love to wander — new places, new perspectives, always moving
+- Gym + deep work is the daily structure
+- Fascinated by how machines understand 3D space from flat 2D images
+
+**Open to remote roles** — Middle East · Europe · US  
+📧 harshu078600@gmail.com
 
 ---
 
