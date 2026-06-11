@@ -157,22 +157,15 @@ Right now I'm going deep into **3D Vision & Generative AI** — where machines d
 
 ---
 
-<!-- ══════════════════════  METRICS DASHBOARD  ══════════════════════ -->
-
-## 📊 Metrics Dashboard
+## 🏙️ 3D Contribution Skyline
 
 <div align="center">
   <img
-    src="https://raw.githubusercontent.com/harshu078600-tech/harshu078600-tech/main/github-metrics.svg"
+    src="https://raw.githubusercontent.com/harshu078600-tech/harshu078600-tech/main/profile-night-rainbow.svg"
     width="100%"
-    alt="GitHub Metrics"
+    alt="3D Contribution Graph"
   />
 </div>
-
-<br/>
-
----
-
 <!-- ══════════════════════  WAKATIME STATS  ══════════════════════════ -->
 
 ## ⏱️ Weekly Coding Stats (WakaTime)
