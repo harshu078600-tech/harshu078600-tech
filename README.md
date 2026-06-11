@@ -69,125 +69,13 @@ Right now I'm going deep into **3D Vision & Generative AI** — where machines d
 
 ---
 
-<!-- ══════════════════════  SPOTIFY NOW PLAYING  ══════════════════════ -->
-
-## 🎵 Now Playing on Spotify
-
-<div align="center">
-  <a href="https://open.spotify.com/user/YOUR_SPOTIFY_USER_ID">
-    <img
-      src="https://novatorem.YOUR-VERCEL-APP.vercel.app/api/spotify?background_color=0d1117&border_color=00d9ff"
-      width="420"
-      alt="Spotify Now Playing"
-    />
-  </a>
-</div>
-
-> **Setup:** Deploy [novatorem](https://github.com/novatorem/novatorem) to Vercel → connect Spotify → replace the URL above with your own Vercel deployment URL.
-
-<br/>
-
----
-
-<!-- ═══════════════════════  SNAKE ANIMATION  ═══════════════════════ -->
-
-## 🐍 Snake Eating My Contributions
-
-<div align="center">
-  <picture>
-    <source
-      media="(prefers-color-scheme: dark)"
-      srcset="https://raw.githubusercontent.com/harshu078600-tech/harshu078600-tech/output/github-contribution-grid-snake-dark.svg"
-    />
-    <source
-      media="(prefers-color-scheme: light)"
-      srcset="https://raw.githubusercontent.com/harshu078600-tech/harshu078600-tech/output/github-contribution-grid-snake.svg"
-    />
-    <img
-      alt="Snake eating my contributions"
-      src="https://raw.githubusercontent.com/harshu078600-tech/harshu078600-tech/output/github-contribution-grid-snake-dark.svg"
-      width="100%"
-    />
-  </picture>
-</div>
-
-<br/>
-
----
-
-<!-- ══════════════════════  PAC-MAN ANIMATION  ══════════════════════ -->
-
-## 👾 Pac-Man Eating My Contributions
-
-<div align="center">
-  <picture>
-    <source
-      media="(prefers-color-scheme: dark)"
-      srcset="https://raw.githubusercontent.com/harshu078600-tech/harshu078600-tech/output/pacman-contribution-graph-dark.svg"
-    />
-    <source
-      media="(prefers-color-scheme: light)"
-      srcset="https://raw.githubusercontent.com/harshu078600-tech/harshu078600-tech/output/pacman-contribution-graph.svg"
-    />
-    <img
-      alt="Pac-Man eating my contributions"
-      src="https://raw.githubusercontent.com/harshu078600-tech/harshu078600-tech/output/pacman-contribution-graph-dark.svg"
-      width="100%"
-    />
-  </picture>
-</div>
-
-<br/>
-
----
-
-<!-- ══════════════════════  3D SKYLINE  ══════════════════════════════ -->
 
 
+## 🧠 NeuralGrid — 3D Contribution Neural Network
 
-## 🏙️ 3D Contribution Skyline
+[![NeuralGrid](https://raw.githubusercontent.com/harshu078600-tech/harshu078600-tech/main/profile-night-rainbow.svg)](https://harshu078600-tech.github.io/harshu078600-tech/neuralgrid.html)
 
-<div align="center">
-  <img
-    src="https://raw.githubusercontent.com/harshu078600-tech/harshu078600-tech/main/profile-night-rainbow.svg"
-    width="100%"
-    alt="3D Contribution Graph"
-  />
-</div>
-
-
----
-
-## 📊 Metrics Dashboard
-
-<div align="center">
-  <img
-    src="https://raw.githubusercontent.com/harshu078600-tech/harshu078600-tech/main/github-metrics.svg"
-    width="100%"
-    alt="GitHub Metrics"
-  />
-</div>
-
-<br/>
-
----
-<!-- ══════════════════════  WAKATIME STATS  ══════════════════════════ -->
-
-## ⏱️ Weekly Coding Stats (WakaTime)
-
-<div align="center">
-  <img
-    src="https://github-readme-stats.vercel.app/api/wakatime?username=harshu078600&theme=tokyonight&hide_border=true&bg_color=0d1117&title_color=00d9ff&text_color=c9d1d9&layout=compact&langs_count=8"
-    width="75%"
-    alt="WakaTime Stats"
-  />
-</div>
-
-> **Setup:** Install the [WakaTime extension](https://wakatime.com/vs-code) in VS Code → link your account → replace `harshu078600` above with your WakaTime username.
-
-<br/>
-
----
+> Interactive Three.js contribution universe. Drag to rotate. Explore commit clusters, activity nodes, and neural pathways.
 
 <!-- ══════════════════════  TROPHIES  ════════════════════════════════ -->
 
