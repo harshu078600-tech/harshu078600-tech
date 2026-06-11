@@ -1,8 +1,8 @@
-name: 🏙️ 3D Contribution Skyline
+name: GitHub-Profile-3D-Contrib
 
 on:
   schedule:
-    - cron: "0 18 * * *"   # Every day at 6 PM UTC
+    - cron: "0 18 * * *"
   workflow_dispatch:
 
 jobs:
@@ -10,32 +10,19 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4
-
-      # ── Generate 3D SVG ───────────────────────────────────────────
-      - name: Generate 3D Skyline SVG
-        uses: yoshi-code-bot/gh-action-skyline-svg@main
-        with:
-          GITHUB_USER_NAME: harshu078600-tech
-          SETTING_JSON: >
-            {
-              "type":           "normal",
-              "title":          "harshu078600-tech",
-              "topHeader":      "Contributions",
-              "backgroundColor":"#0d1117",
-              "foregroundColor":"#00d9ff",
-              "barColor":       "#7c83fd",
-              "barBgColor":     "#1a1a2e",
-              "textColor":      "#c9d1d9",
-              "dayDotBgColor":  "#1a1a2e"
-            }
-
-      # ── Push SVG to main branch ───────────────────────────────────
-      - name: Deploy to main branch
-        uses: crazy-max/ghaction-github-pages@v3.1.0
-        with:
-          target_branch: main
-          build_dir: ./profile-3d-contrib
-          keep_history: true
+      - name: Generate 3D Contribution Graph
+        uses: yoshi389111/github-profile-3d-contrib@0.7.1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          USERNAME: harshu078600-tech
+
+      - name: Commit & Push
+        run: |
+          git config --global user.name github-actions
+          git config --global user.email github-actions@github.com
+          git clone https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }} repo
+          cp -r profile-3d-contrib/* repo/
+          cd repo
+          git add .
+          git commit -m "update 3d contribution graph" || exit 0
+          git push
