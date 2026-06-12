@@ -22,7 +22,7 @@
 <canvas id="c"></canvas>
 <div id="hud">
   <h1>harshu078600-tech</h1>
-  <p>Neural contribution map · June 11, 2026</p>
+  <p>Neural contribution map · June 12, 2026</p>
 </div>
 <div id="stats">
   <div class="stat"><div class="val" id="s-total">0</div><div class="lbl">Total commits</div></div>
@@ -31,9 +31,9 @@
   <div class="stat"><div class="val" id="s-peak">0</div><div class="lbl">Peak day</div></div>
 </div>
 <div id="drag-hint">drag to rotate</div>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"><\/script>
+<script src="https://unpkg.com/three@0.128.0/build/three.min.js"></script>
 <script>
-const RAW=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,6,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,1,0,0,0,0,3,3,26];
+const RAW=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,6,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,1,0,0,0,0,3,3,29,2];
 const total=RAW.reduce((a,b)=>a+b,0);
 const active=RAW.filter(v=>v>0).length;
 const peak=Math.max(...RAW);
@@ -55,9 +55,9 @@ window.addEventListener('resize',()=>{
   renderer.setSize(innerWidth,innerHeight);
 });
 
-const scene=new THREE.Scene();
+const ambientLight = new THREE.AmbientLight(0xffffff, 2); scene.add(ambientLight);  const pointLight = new THREE.PointLight(0x00ffff, 5); pointLight.position.set(50,50,50); scene.add(pointLight);  const pointLight2 = new THREE.PointLight(0xff00ff, 5); pointLight2.position.set(-50,-50,50); scene.add(pointLight2);
 const camera=new THREE.PerspectiveCamera(55,innerWidth/innerHeight,.1,1000);
-camera.position.set(0,0,95);
+camera.position.set(0,0,60);
 
 const COLORS=[0x1e1b4b,0x312e81,0x4338ca,0x4f46e5,0x6366f1,0x818cf8,0xa5b4fc,0xc7d2fe,0xe0e7ff];
 const nodeGroup=new THREE.Group();
@@ -75,13 +75,13 @@ RAW.forEach((v,i)=>{
   const x=rBase*Math.cos(theta)*Math.cos(phi);
   const y=rBase*Math.sin(phi)*1.6;
   const z=rBase*Math.sin(theta)*Math.cos(phi);
-  const size=v===0?.18:.28+Math.min(v,10)*0.16;
+  const size=v===0?0.3:1.2+Math.min(v,10)*0.4;
   const geo=new THREE.SphereGeometry(size,10,10);
   const colIdx=v===0?0:Math.min(Math.ceil(v/1.5),8);
-  const mat=new THREE.MeshBasicMaterial({
+  const mat=new THREE.MeshPhongMaterial({
     color:COLORS[colIdx],
     transparent:true,
-    opacity:v===0?.08:.55+Math.min(v,8)*.04
+    opacity:v===0?0.2:0.95
   });
   const mesh=new THREE.Mesh(geo,mat);
   mesh.position.set(x,y,z);
@@ -145,6 +145,6 @@ function animate(){
   renderer.render(scene,camera);
 }
 animate();
-<\/script>
+</script>
 </body>
 </html>
